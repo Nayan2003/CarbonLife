@@ -1,0 +1,58 @@
+.statsBar {
+  display: flex; gap: 16px; margin-bottom: 28px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 16px 20px;
+  flex-wrap: wrap;
+}
+.statChip {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 70px;
+}
+.statChip span:first-child { font-size: 22px; font-family: 'Space Grotesk', sans-serif; }
+
+.emptyState {
+  text-align: center; padding: 60px 20px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.categoryGroup { margin-bottom: 28px; }
+.categoryHeader {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px;
+}
+.categoryIcon {
+  width: 36px; height: 36px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.categoryTitle { font-size: 17px; font-weight: 700; flex: 1; }
+.actionsList { display: flex; flex-direction: column; gap: 12px; }
+.actionCard {
+  background: var(--gradient-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px 20px;
+  transition: all var(--transition-base);
+}
+.actionCard:hover { border-color: var(--border-hover); }
+.actionCompleted { opacity: 0.6; }
+.actionTop { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
+.actionInfo { flex: 1; }
+.actionTitle { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.actionDesc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.actionSaving { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; }
+.whyBtn {
+  background: none; border: none; color: var(--blue-400); font-size: 13px;
+  cursor: pointer; font-family: 'Inter', sans-serif; padding: 4px 0;
+  margin-bottom: 8px;
+}
+.whyBtn:hover { text-decoration: underline; }
+.whyBox {
+  background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.15);
+  border-radius: var(--radius-sm); padding: 12px;
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  margin-bottom: 12px; animation: fadeIn 0.2s ease;
+}
+.actionButtons {
+  display: flex; align-items: center; gap: 8px;
+  border-top: 1px solid var(--border); padding-top: 12px;
+}
+.statusLabel { font-size: 12px; font-weight: 600; }

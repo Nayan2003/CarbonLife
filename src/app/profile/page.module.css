@@ -1,0 +1,23 @@
+.layout { display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
+.card {
+  background: var(--gradient-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+}
+.avatarSection { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+.avatarFallback {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--gradient-green); display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: white;
+}
+.baselineTotal {
+  font-size: 36px; font-weight: 800; color: var(--green-400); font-family: 'Space Grotesk', sans-serif;
+}
+.baselineTotal span { font-size: 16px; color: var(--text-secondary); font-weight: 400; margin-left: 4px; }
+.dangerCard {
+  background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15);
+  border-radius: var(--radius-lg); padding: 20px;
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+}

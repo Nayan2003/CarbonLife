@@ -1,37 +1,90 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Users can only read/write their own data
+
+    // ── Helper functions ──────────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isResourceOwner() {
+      return isSignedIn() && request.auth.uid == resource.data.userId;
+    }
+
+    function isNewResourceOwner() {
+      return isSignedIn() && request.auth.uid == request.resource.data.userId;
+    }
+
+    // ── Users collection ──────────────────────────────────────────────────────
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-      
-      match /baseline/{document} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read:   if isOwner(userId);
+      allow create: if isOwner(userId)
+                    && request.resource.data.keys().hasAll(['uid', 'email'])
+                    && request.resource.data.uid == userId;
+      allow update: if isOwner(userId)
+                    && request.resource.data.uid == userId;
+      allow delete: if false; // Never allow profile deletion via client
+
+      // Baseline subcollection
+      match /baseline/{docId} {
+        allow read, write: if isOwner(userId);
       }
-      match /badges/{document} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // Badges subcollection
+      match /badges/{docId} {
+        allow read:   if isOwner(userId);
+        allow create: if isOwner(userId);
+        allow update: if false; // Badges are immutable once earned
+        allow delete: if false;
       }
-      match /actions/{document} {
-        allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // Actions/Recommendations subcollection
+      match /actions/{docId} {
+        allow read, write: if isOwner(userId);
       }
     }
-    
-    // Activities: user can only access their own
+
+    // ── Activities collection ─────────────────────────────────────────────────
     match /activities/{activityId} {
-      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      allow read:   if isResourceOwner();
+      allow create: if isNewResourceOwner()
+                    && request.resource.data.keys().hasAll(['userId', 'type', 'estimatedCO2', 'date'])
+                    && request.resource.data.estimatedCO2 is number
+                    && request.resource.data.estimatedCO2 >= 0
+                    && request.resource.data.estimatedCO2 <= 10000; // sanity cap
+      allow update: if isResourceOwner()
+                    && request.resource.data.userId == resource.data.userId; // can't change owner
+      allow delete: if isResourceOwner();
     }
-    
-    // Goals: user can only access their own
+
+    // ── Goals collection ──────────────────────────────────────────────────────
     match /goals/{goalId} {
-      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      allow read:   if isResourceOwner();
+      allow create: if isNewResourceOwner()
+                    && request.resource.data.keys().hasAll(['userId', 'title', 'targetKg', 'period', 'status'])
+                    && request.resource.data.targetKg is number
+                    && request.resource.data.targetKg > 0;
+      allow update: if isResourceOwner()
+                    && request.resource.data.userId == resource.data.userId;
+      allow delete: if isResourceOwner();
     }
-    
-    // Stats: user can only access their own
+
+    // ── Stats collection ──────────────────────────────────────────────────────
     match /stats/{statId} {
-      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null && request.auth.uid == request.resource.data.userId;
+      allow read:   if isResourceOwner();
+      allow create: if isNewResourceOwner();
+      allow update: if isResourceOwner()
+                    && request.resource.data.userId == resource.data.userId;
+      allow delete: if isResourceOwner();
+    }
+
+    // ── Deny everything else ──────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

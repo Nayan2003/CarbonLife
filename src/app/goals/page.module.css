@@ -1,0 +1,62 @@
+.streakBanner {
+  background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(239,68,68,0.05));
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-xl); padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px; position: relative; overflow: hidden;
+}
+.streakOrb {
+  position: absolute; width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,158,11,0.08), transparent 70%);
+  top: -80px; left: -40px; pointer-events: none;
+}
+.streakLeft { display: flex; align-items: center; gap: 16px; }
+.streakFire { font-size: 48px; animation: float 2s ease-in-out infinite; }
+.streakCount { font-size: 28px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; color: var(--amber-400); }
+.streakLabel { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+.streakRight { text-align: right; }
+.streakStat { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+
+.section { margin-bottom: 36px; }
+.sectionHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.sectionTitle { font-size: 20px; font-weight: 700; }
+
+.addGoalCard {
+  background: rgba(16,185,129,0.05); border: 1px solid rgba(16,185,129,0.15);
+  border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px;
+  animation: fadeInScale 0.3s ease;
+}
+
+.emptyGoals {
+  text-align: center; padding: 48px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.goalsList { display: flex; flex-direction: column; gap: 12px; }
+.goalCard {
+  background: var(--gradient-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px 20px;
+  transition: all var(--transition-base);
+}
+.goalCard:hover { border-color: var(--border-hover); }
+.goalTop { display: flex; align-items: flex-start; gap: 14px; }
+.goalInfo { flex: 1; }
+.goalTitle { font-size: 15px; font-weight: 700; }
+
+.badgesGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.badgeCard {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--gradient-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 16px 18px;
+  transition: all var(--transition-base);
+}
+.badgeEarned {
+  border-color: rgba(16,185,129,0.3);
+  background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02));
+}
+.badgeLocked { opacity: 0.5; }
+.badgeIcon { font-size: 28px; flex-shrink: 0; }
+.badgeInfo { flex: 1; }
+.badgeName { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.badgeDesc { font-size: 12px; color: var(--text-secondary); }
