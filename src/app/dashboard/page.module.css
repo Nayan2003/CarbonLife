@@ -304,26 +304,24 @@
   .insightsRow { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 800px) {
-  .quickLogGrid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 700px) {
-  .kpiGroup { grid-template-columns: repeat(2, 1fr); }
-  .heroHeader { flex-direction: column; }
-  .quickLogGrid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 768px) {
+  .heroHeader { flex-direction: column; gap: 12px; }
+  .kpiRow { grid-template-columns: 1fr; }
+  .kpiGroup { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .chartsRow { grid-template-columns: 1fr; }
+  .insightsRow { grid-template-columns: 1fr; }
+  .quickLogGrid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .scoreCard { padding: 16px !important; }
+  .heatmapSection { padding: 16px; }
 }
 
 @media (max-width: 480px) {
-  .quickLogGrid { grid-template-columns: 1fr; }
+  .kpiGroup { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .quickLogGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroHeader h1 { font-size: 20px; }
 }
 
-@media (max-width: 1100px) {
-  .chartsRow {
-    grid-template-columns: 1fr;
-  }
-
-  .insightsRow {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 360px) {
+  .kpiGroup { grid-template-columns: 1fr; }
+  .quickLogGrid { grid-template-columns: 1fr 1fr; }
 }

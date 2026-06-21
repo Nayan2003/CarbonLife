@@ -167,7 +167,7 @@ export default function DashboardPage() {
   return (
     <div className="app-layout">
       <Sidebar />
-      <main className="app-main">
+      <main className="app-main" id="main-content" aria-label="Dashboard">
         <div className="page-container">
 
           {/* ── Hero Header ─────────────────────────────────────────────── */}

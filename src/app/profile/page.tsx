@@ -72,7 +72,7 @@ export default function ProfilePage() {
   return (
     <div className="app-layout">
       <Sidebar />
-      <main className="app-main">
+      <main className="app-main" id="main-content" aria-label="Profile">
         <div className="page-container">
           <div className="page-header">
             <h1 className="page-title">👤 Profile</h1>

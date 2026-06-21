@@ -1,3 +1,4 @@
+/* ── Desktop Sidebar ─────────────────────────────────────────────── */
 .sidebar {
   position: fixed;
   top: 0;
@@ -20,6 +21,13 @@
   padding: 8px 12px;
   margin-bottom: 28px;
   text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+.logo:hover { background: var(--bg-glass); }
+.logo:focus-visible {
+  outline: 2px solid var(--green-400);
+  outline-offset: 2px;
 }
 .logoIcon { font-size: 24px; }
 .logoText {
@@ -56,6 +64,10 @@
 .navItem:hover {
   background: var(--bg-glass);
   color: var(--text-primary);
+}
+.navItem:focus-visible {
+  outline: 2px solid var(--green-400);
+  outline-offset: 2px;
 }
 .navItem.active {
   background: rgba(16, 185, 129, 0.12);
@@ -122,7 +134,64 @@
   flex-shrink: 0;
 }
 .logoutBtn:hover { background: rgba(239,68,68,0.1); }
+.logoutBtn:focus-visible {
+  outline: 2px solid var(--red-400, #f87171);
+  outline-offset: 2px;
+}
 
+/* ── Mobile Bottom Navigation ───────────────────────────────────── */
+.bottomNav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: #070f1f;
+  border-top: 1px solid var(--border);
+  z-index: 200;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+}
+
+.bottomNavItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 3px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 4px;
+  transition: all var(--transition-fast);
+  border-top: 2px solid transparent;
+}
+.bottomNavItem:hover {
+  color: var(--text-primary);
+  background: var(--bg-glass);
+}
+.bottomNavItem:focus-visible {
+  outline: 2px solid var(--green-400);
+  outline-offset: -2px;
+}
+.bottomNavActive {
+  color: var(--green-400) !important;
+  border-top: 2px solid var(--green-400);
+  background: rgba(16,185,129,0.08);
+}
+.bottomNavIcon { font-size: 20px; line-height: 1; }
+.bottomNavLabel { font-size: 10px; font-weight: 600; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .sidebar { transform: translateX(-100%); }
+  .sidebar {
+    display: none;
+  }
+  .bottomNav {
+    display: flex;
+  }
 }

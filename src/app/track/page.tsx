@@ -112,7 +112,7 @@ export default function TrackPage() {
   return (
     <div className="app-layout">
       <Sidebar />
-      <main className="app-main">
+      <main className="app-main" id="main-content" aria-label="Track Activity">
         <div className="page-container">
           <div className="page-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
