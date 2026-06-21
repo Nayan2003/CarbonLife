@@ -1,0 +1,36 @@
+# .gcloudignore — controls what gets uploaded to Cloud Build
+# Similar to .gitignore but ALLOWS .env.production for build-time env vars
+
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# next.js build output
+.next/
+out/
+build/
+
+# git
+.git/
+
+# misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# local dev env only (NOT .env.production — that's needed by Cloud Build)
+.env.local
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# firebase local
+.firebase/
